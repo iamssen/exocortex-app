@@ -1,5 +1,5 @@
-import { getFlag } from '@ssen/country-code';
-import { useLocalStorageJson } from '@ssen/use-local-storage';
+import { getFlag } from '@iamssen/country-code';
+import { useLocalStorageJson } from '@iamssen/use-local-storage';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@ui/query';
 import { DateTime } from 'luxon';

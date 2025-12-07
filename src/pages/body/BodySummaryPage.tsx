@@ -5,7 +5,6 @@ import type {
   Body,
   RescuetimeHistory,
 } from '@iamssen/exocortex';
-import { getExist } from '@ssen/collection-utils';
 import { useQuery } from '@tanstack/react-query';
 import {
   EnergyAndExerciseChart,
@@ -225,4 +224,21 @@ export function BodySummaryPage(): ReactNode {
       )}
     </Page>
   );
+}
+
+function getExist<T extends {}, K extends keyof T>(
+  obj: T | undefined | null,
+  ...keys: K[]
+): T[K] | undefined {
+  if (!obj) {
+    return undefined;
+  }
+  const existKey = keys.find((k) => {
+    const d = obj[k];
+    if (Array.isArray(d)) {
+      return d.length > 0;
+    }
+    return !!d;
+  });
+  return existKey ? obj[existKey] : undefined;
 }

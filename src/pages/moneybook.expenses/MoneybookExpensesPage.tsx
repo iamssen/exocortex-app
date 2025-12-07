@@ -1,5 +1,5 @@
 import type { DESC, MoneybookHistory } from '@iamssen/exocortex';
-import { FormatConfig } from '@ssen/format';
+import { FormatConfig } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { FilterTextForm } from '@ui/components';
 import { filterMoneybookHistory, useScreen } from '@ui/data-utils';

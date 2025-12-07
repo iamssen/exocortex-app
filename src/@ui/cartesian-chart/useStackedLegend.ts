@@ -1,4 +1,4 @@
-import { useLocalStorageJson } from '@ssen/use-local-storage';
+import { useLocalStorageJson } from '@iamssen/use-local-storage';
 import { useCallback, useMemo } from 'react';
 import type { Stacked } from './StackedLegend.tsx';
 

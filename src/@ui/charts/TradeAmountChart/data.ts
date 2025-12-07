@@ -5,7 +5,7 @@ import type {
   QuoteRecord,
 } from '@iamssen/exocortex';
 import { findStartIndex } from '@iamssen/exocortex/date-utils';
-import type { CurrencyType } from '@ssen/format';
+import type { CurrencyType } from '@iamssen/format';
 import type {
   CartesianChartAxis,
   HistoryLineData,

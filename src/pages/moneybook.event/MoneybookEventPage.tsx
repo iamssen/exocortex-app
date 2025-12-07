@@ -1,4 +1,4 @@
-import { Format, FormatConfig } from '@ssen/format';
+import { Format, FormatConfig } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { EventExpensesChart } from '@ui/charts';
 import { FilterTextForm } from '@ui/components';

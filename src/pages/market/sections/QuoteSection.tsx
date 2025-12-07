@@ -4,7 +4,7 @@ import {
   hasMatchHigh,
   hasMatchLow,
 } from '@iamssen/exocortex/projector';
-import { useElementIntersection } from '@ssen/use-element-intersection';
+import { useElementIntersection } from '@iamssen/use-element-intersection';
 import { useQuery } from '@tanstack/react-query';
 import { QuoteChart } from '@ui/charts';
 import { QuoteLinkIcons } from '@ui/components';

@@ -4,8 +4,8 @@ import {
   joinQuoteStatisticsAndQuote,
   joinTradesAndQuotes,
 } from '@iamssen/exocortex/projector';
-import type { CurrencyType } from '@ssen/format';
-import { Format } from '@ssen/format';
+import type { CurrencyType } from '@iamssen/format';
+import { Format } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { QuoteChart } from '@ui/charts';
 import {

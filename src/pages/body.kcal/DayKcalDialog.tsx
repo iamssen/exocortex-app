@@ -1,7 +1,7 @@
+import type { DialogProps } from '@iamssen/dialog';
+import { useESC } from '@iamssen/dialog';
 import type { DayKcal } from '@iamssen/exocortex';
-import type { DialogProps } from '@ssen/dialog';
-import { useESC } from '@ssen/dialog';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import type { ReactNode } from 'react';
 import styles from './BodyKcalPage.module.css';
 import component from './DayKcalDialog.module.css';

@@ -1,5 +1,5 @@
 import type { WeeklyBody } from '@iamssen/exocortex';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import { DateTime } from 'luxon';
 import type { Column } from 'react-data-grid';
 import { avgDayKcalClass, dayClass } from './cellClass.ts';

@@ -1,5 +1,5 @@
+import { useDialog } from '@iamssen/dialog';
 import type { ASC, DESC, MonthlyBody, WeeklyBody } from '@iamssen/exocortex';
-import { useDialog } from '@ssen/dialog';
 import { useQuery } from '@tanstack/react-query';
 import { KcalChart } from '@ui/charts';
 import { WeeklyKcalGrid } from '@ui/grids';

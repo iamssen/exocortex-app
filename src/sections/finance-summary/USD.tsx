@@ -1,6 +1,6 @@
 import type { Iso8601, KRW, Portfolio } from '@iamssen/exocortex';
 import { sumBondsGain } from '@iamssen/exocortex/projector';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@ui/query';
 import { DateTime } from 'luxon';

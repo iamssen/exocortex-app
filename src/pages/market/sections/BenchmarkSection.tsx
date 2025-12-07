@@ -1,5 +1,5 @@
 import type { DV, ExpiryData, Iso8601 } from '@iamssen/exocortex';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { type PriceLineData } from '@ui/cartesian-chart';
 import { BenchmarkChart } from '@ui/charts';

@@ -1,5 +1,5 @@
 import type { ExpiryData, PeAndYields } from '@iamssen/exocortex';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import type { ReactNode } from 'react';
 import styles from '../MarketPage.module.css';
 

@@ -1,6 +1,6 @@
 import type { Bond, KRW } from '@iamssen/exocortex';
-import type { CurrencyType } from '@ssen/format';
-import { Format } from '@ssen/format';
+import type { CurrencyType } from '@iamssen/format';
+import { Format } from '@iamssen/format';
 import { DateTime } from 'luxon';
 import { Fragment, type ReactNode } from 'react';
 import { ImpendCount } from './ImpendCount.tsx';

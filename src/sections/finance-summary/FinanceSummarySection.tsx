@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@ssen/use-local-storage';
+import { useLocalStorage } from '@iamssen/use-local-storage';
 import { useSummary } from '@ui/data-utils';
 import type { ReactNode } from 'react';
 import { NavLink } from 'react-router';

@@ -1,5 +1,5 @@
 import type { AggregatedMoneybook, ASC, Iso8601 } from '@iamssen/exocortex';
-import { FormatConfig, useFormat } from '@ssen/format';
+import { FormatConfig, useFormat } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { StackedLegend, useStackedLegend } from '@ui/cartesian-chart';
 import { MoneybookChart, MoneybookSummaryChart } from '@ui/charts';

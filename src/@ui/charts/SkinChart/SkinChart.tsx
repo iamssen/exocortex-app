@@ -1,3 +1,4 @@
+import { useFormat } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import {
   CartesianChart,
@@ -11,7 +12,6 @@ import {
 import { api } from '@ui/query';
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
-import { useFormat } from '../../../@ssen/format/context';
 import styles from '../styles.module.css';
 import type { SkinChartParams } from './data';
 import { createSkinChartData } from './data';

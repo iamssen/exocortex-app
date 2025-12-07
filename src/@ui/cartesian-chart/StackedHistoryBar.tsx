@@ -1,5 +1,5 @@
 import type { Iso8601 } from '@iamssen/exocortex';
-import { useFormat } from '@ssen/format';
+import { useFormat } from '@iamssen/format';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import type { CSSProperties, ReactElement, ReactNode, SVGProps } from 'react';
 import { useMemo } from 'react';

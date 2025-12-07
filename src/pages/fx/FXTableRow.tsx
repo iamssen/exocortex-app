@@ -1,5 +1,5 @@
 import type { Ratio } from '@iamssen/exocortex';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { OutLink } from '@ui/components';
 import { useQuoteInfo } from '@ui/data-utils';

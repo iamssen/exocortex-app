@@ -1,6 +1,6 @@
 import type { Iso8601, KRW as K, Portfolio } from '@iamssen/exocortex';
 import { sumBondsGain, sumDepositsGain } from '@iamssen/exocortex/projector';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import { DateTime } from 'luxon';
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 import { Fragment, useMemo } from 'react';

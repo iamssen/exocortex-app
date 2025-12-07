@@ -1,7 +1,7 @@
 import type { BondsGain } from '@iamssen/exocortex';
 import { reduceBondsGain } from '@iamssen/exocortex/projector';
-import type { CurrencyType } from '@ssen/format';
-import { Format } from '@ssen/format';
+import type { CurrencyType } from '@iamssen/format';
+import { Format } from '@iamssen/format';
 import { Fragment, type ReactNode, useMemo } from 'react';
 
 export interface BondsGainListProps {

@@ -1,6 +1,6 @@
 import type { JoinedFX, JPY, KRW, USD } from '@iamssen/exocortex';
 import { sumGain } from '@iamssen/exocortex/projector';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import type { OtherCurrencyBalances } from '@ui/data-utils';
 import { useJoinedQuoteHistory } from '@ui/data-utils';

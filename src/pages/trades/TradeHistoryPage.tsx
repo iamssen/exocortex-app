@@ -7,8 +7,8 @@ import {
   aggregateTrades,
   joinTradesAndQuotes,
 } from '@iamssen/exocortex/projector';
-import type { CurrencyType } from '@ssen/format';
-import { FormatConfig } from '@ssen/format';
+import type { CurrencyType } from '@iamssen/format';
+import { FormatConfig } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { TradeAmountChart } from '@ui/charts';
 import { useQuotes } from '@ui/data-utils';

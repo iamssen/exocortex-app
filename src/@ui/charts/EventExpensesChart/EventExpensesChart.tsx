@@ -1,5 +1,5 @@
 import type { ASC, MoneybookHistory } from '@iamssen/exocortex';
-import { useFormat } from '@ssen/format';
+import { useFormat } from '@iamssen/format';
 import useResizeObserver from '@ssen/use-resize-observer';
 import type { HierarchyRectangularNode } from 'd3-hierarchy';
 import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';

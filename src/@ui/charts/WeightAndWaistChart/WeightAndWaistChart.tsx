@@ -1,4 +1,4 @@
-import { useFormat } from '@ssen/format';
+import { useFormat } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import type { CartesianChartProps } from '@ui/cartesian-chart';
 import {

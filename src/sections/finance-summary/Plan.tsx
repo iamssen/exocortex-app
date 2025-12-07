@@ -1,4 +1,4 @@
-import { Format, FormatConfig } from '@ssen/format';
+import { Format, FormatConfig } from '@iamssen/format';
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
 export interface PlanProps extends DetailedHTMLProps<

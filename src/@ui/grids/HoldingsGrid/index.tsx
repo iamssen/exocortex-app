@@ -1,5 +1,5 @@
 import type { JoinedHolding, PortfolioMarket } from '@iamssen/exocortex';
-import type { CurrencyType } from '@ssen/format';
+import type { CurrencyType } from '@iamssen/format';
 import { type ReactNode, useEffect, useMemo, useRef } from 'react';
 import type { DataGridHandle, DataGridProps } from 'react-data-grid';
 import { DataGrid } from 'react-data-grid';

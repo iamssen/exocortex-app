@@ -1,5 +1,5 @@
-import type { CurrencyType } from '@ssen/format';
-import { format } from '@ssen/format';
+import type { CurrencyType } from '@iamssen/format';
+import { format } from '@iamssen/format';
 import type {
   BarMarker,
   CartesianChartAxis,

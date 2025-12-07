@@ -1,6 +1,6 @@
 import type { FearAndGreed, Ratio } from '@iamssen/exocortex';
 import { joinQuoteStatisticsAndQuote } from '@iamssen/exocortex/projector';
-import { Format } from '@ssen/format';
+import { Format } from '@iamssen/format';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@ui/query';
 import { clsx } from 'clsx/lite';

@@ -1,7 +1,7 @@
-import type { CartesianChartAxis } from './CartesianChart.tsx';
-import { useFormat } from '@ssen/format';
+import { useFormat } from '@iamssen/format';
 import type { ReactNode, SVGProps } from 'react';
 import { useMemo } from 'react';
+import type { CartesianChartAxis } from './CartesianChart.tsx';
 import { HorizontalLine } from './HorizontalLine.tsx';
 
 export interface PriceLineData {

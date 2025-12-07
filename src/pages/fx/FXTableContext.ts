@@ -1,4 +1,4 @@
-import type { FormatPreset } from '@ssen/format';
+import type { FormatPreset } from '@iamssen/format';
 import type { ScaleContinuousNumeric } from 'd3-scale';
 import type { Context } from 'react';
 import { createContext, useContext } from 'react';
