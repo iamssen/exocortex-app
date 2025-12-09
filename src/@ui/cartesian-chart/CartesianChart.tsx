@@ -1,4 +1,4 @@
-import useResizeObserver from '@ssen/use-resize-observer';
+import useResizeObserver from '@iamssen/exocortex-appkit/use-resize-observer';
 import type {
   CSSProperties,
   DetailedHTMLProps,

@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@iamssen/exocortex": "0.0.10",
-    "@iamssen/exocortex-appkit": "0.0.1",
+    "@iamssen/exocortex-appkit": "0.0.2",
     "@tanstack/react-query": "^5.90.12",
     "@tiptap/core": "^3.11.1",
     "@tiptap/extension-list": "^3.11.1",
