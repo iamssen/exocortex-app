@@ -7,8 +7,6 @@ import type {
 } from '@iamssen/exocortex';
 import { useQuery } from '@tanstack/react-query';
 import {
-  EnergyAndExerciseChart,
-  KcalChart,
   RescuetimeSummaryChart,
   SkinChart,
   WeightAndWaistChart,
@@ -21,12 +19,14 @@ import {
 } from '@ui/components';
 import { api } from '@ui/query';
 import { DateTime } from 'luxon';
-import { type ReactNode, useMemo } from 'react';
-import { Link } from 'react-router';
+import { Suspense, useMemo, type ReactNode } from 'react';
 import { bodyChartStartDurations } from '../../env.ts';
 import { Page } from '../../Page.tsx';
 import styles from './BodySummaryPage.module.css';
 import { rescuetimeSummaryQuery } from './env.ts';
+import { EnergiesAndExerciesSection } from './sections/EnergiesAndExerciesSection.tsx';
+import { getExist } from './sections/getExist.ts';
+import { KcalSection } from './sections/KcalSection.tsx';
 
 export function BodySummaryPage(): ReactNode {
   const { data } = useQuery(api('body'));
@@ -62,15 +62,6 @@ export function BodySummaryPage(): ReactNode {
       : 'months';
   }, [chartStartDate.value]);
 
-  const kcals = useMemo(() => {
-    if (!data) {
-      return undefined;
-    }
-    return data[dataKey].filter(
-      (d) => typeof d.avgDayKcal === 'number',
-    ) as unknown as ASC<AggregatedBody>;
-  }, [dataKey, data]);
-
   const weightsAndWaist = useMemo(() => {
     if (!data) {
       return undefined;
@@ -80,27 +71,6 @@ export function BodySummaryPage(): ReactNode {
         typeof d.avgDayWeight === 'number' || typeof d.avgDayWaist === 'number',
     ) as unknown as ASC<AggregatedBody>;
   }, [dataKey, data]);
-
-  const energiesAndExercies = useMemo(() => {
-    if (!data) {
-      return undefined;
-    }
-    return data[dataKey].filter(
-      (d) =>
-        typeof d.avgDayEnergy === 'number' || typeof d.avgDayKcal === 'number',
-    ) as unknown as ASC<AggregatedBody>;
-  }, [dataKey, data]);
-
-  // const severitiesAndPustules = useMemo(() => {
-  //   if (!data) {
-  //     return undefined;
-  //   }
-  //   return data[dataKey].filter(
-  //     (d) =>
-  //       typeof d.avgDaySkinSeverity === 'number' ||
-  //       typeof d.avgDaySkinPustules === 'number',
-  //   ) as unknown as ASC<AggregatedBody>;
-  // }, [dataKey, data]);
 
   const rescuetimeHistory = useMemo(() => {
     if (!rescuetimeData) {
@@ -134,43 +104,16 @@ export function BodySummaryPage(): ReactNode {
         onChange={setChartStartDate}
       />
 
-      {kcals && (
-        <figure aria-label="Calorie intake history">
-          <Link to="./kcal">
-            <figcaption>
-              Kcal
-              <sub>{kcals.at(-1)?.dayKcals.findLast((o) => !!o)?.date}</sub>
-            </figcaption>
-            <KcalChart
-              data={kcals}
-              className={styles.chart}
-              start={chartStartDate.value}
-            />
-          </Link>
-        </figure>
-      )}
+      <Suspense>
+        <KcalSection dataKey={dataKey} chartStartDate={chartStartDate} />
+      </Suspense>
 
-      {energiesAndExercies && (
-        <figure aria-label="Calories burned and exercise times">
-          <figcaption>
-            Energy & Exercise
-            <sub aria-label="The date of the last collected data">
-              {
-                getExist(
-                  energiesAndExercies.at(-1),
-                  'dayEnergies',
-                  'dayExercises',
-                )?.findLast((o) => !!o)?.date
-              }
-            </sub>
-          </figcaption>
-          <EnergyAndExerciseChart
-            data={energiesAndExercies}
-            className={styles.chart}
-            start={chartStartDate.value}
-          />
-        </figure>
-      )}
+      <Suspense>
+        <EnergiesAndExerciesSection
+          dataKey={dataKey}
+          chartStartDate={chartStartDate}
+        />
+      </Suspense>
 
       {weightsAndWaist && (
         <figure aria-label="Body weight history and waist circumference history">
@@ -224,21 +167,4 @@ export function BodySummaryPage(): ReactNode {
       )}
     </Page>
   );
-}
-
-function getExist<T extends {}, K extends keyof T>(
-  obj: T | undefined | null,
-  ...keys: K[]
-): T[K] | undefined {
-  if (!obj) {
-    return undefined;
-  }
-  const existKey = keys.find((k) => {
-    const d = obj[k];
-    if (Array.isArray(d)) {
-      return d.length > 0;
-    }
-    return !!d;
-  });
-  return existKey ? obj[existKey] : undefined;
 }

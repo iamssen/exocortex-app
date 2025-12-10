@@ -4,8 +4,9 @@ import type {
   DefaultError,
   QueryFunction,
   QueryFunctionContext,
-  UseQueryOptions,
+  QueryObserverOptions,
 } from '@tanstack/react-query';
+import { queryOptions } from '@tanstack/react-query';
 
 type Routes = {
   [P in APIConfig[number] as P['__apiPath__']]: {
@@ -25,32 +26,44 @@ async function queryFn(ctx: QueryFunctionContext<[string]>): Promise<any> {
     : res.json();
 }
 
+type ApiOptions<
+  TQueryFnData = unknown,
+  TError = DefaultError,
+  TData = TQueryFnData,
+  TQueryData = TQueryFnData,
+> = Omit<
+  QueryObserverOptions<TQueryFnData, TError, TData, TQueryData>,
+  'queryFn'
+> & {
+  queryFn?: QueryFunction<TQueryFnData, readonly unknown[]>;
+};
+
 export function api<P extends keyof Routes, Data = PickData<Routes[P]['data']>>(
   path: P,
   ...args: Routes[P]['query'] extends never
     ? [
         query?: {},
         options?: Omit<
-          UseQueryOptions<Routes[P]['data'], DefaultError, Data>,
-          'queryKey' | 'queryFn'
+          ApiOptions<Routes[P]['data'], DefaultError, Data>,
+          'queryKey'
         >,
       ]
     : {} extends Routes[P]['query']
       ? [
           query?: Routes[P]['query'],
           options?: Omit<
-            UseQueryOptions<Routes[P]['data'], DefaultError, Data>,
-            'queryKey' | 'queryFn'
+            ApiOptions<Routes[P]['data'], DefaultError, Data>,
+            'queryKey'
           >,
         ]
       : [
           query: Routes[P]['query'],
           options?: Omit<
-            UseQueryOptions<Routes[P]['data'], DefaultError, Data>,
-            'queryKey' | 'queryFn'
+            ApiOptions<Routes[P]['data'], DefaultError, Data>,
+            'queryKey'
           >,
         ]
-): UseQueryOptions<Routes[P]['data'], DefaultError, Data> {
+): ApiOptions<Routes[P]['data'], DefaultError, Data> {
   const refetchInterval = path.startsWith('finance/quote/')
     ? 1000 * 60
     : 1000 * 60 * 10;
@@ -58,7 +71,7 @@ export function api<P extends keyof Routes, Data = PickData<Routes[P]['data']>>(
   const [query = {}, options = {}] = args;
   const searchParams = new URLSearchParams(query);
 
-  return {
+  return queryOptions({
     queryKey: [
       path + (searchParams.size > 0 ? `?${searchParams.toString()}` : ''),
     ],
@@ -66,7 +79,7 @@ export function api<P extends keyof Routes, Data = PickData<Routes[P]['data']>>(
     select: defaultSelect as any,
     refetchInterval,
     ...options,
-  };
+  });
 }
 
 type PickData<T> =
