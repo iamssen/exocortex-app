@@ -1,16 +1,5 @@
-import type {
-  AggregatedBody,
-  AggregatedRescuetimeHistory,
-  ASC,
-  Body,
-  RescuetimeHistory,
-} from '@iamssen/exocortex';
+import type { Body } from '@iamssen/exocortex';
 import { useQuery } from '@tanstack/react-query';
-import {
-  RescuetimeSummaryChart,
-  SkinChart,
-  WeightAndWaistChart,
-} from '@ui/charts';
 import type { DateItem } from '@ui/components';
 import {
   SingleDateSelect,
@@ -23,14 +12,14 @@ import { Suspense, useMemo, type ReactNode } from 'react';
 import { bodyChartStartDurations } from '../../env.ts';
 import { Page } from '../../Page.tsx';
 import styles from './BodySummaryPage.module.css';
-import { rescuetimeSummaryQuery } from './env.ts';
-import { EnergiesAndExerciesSection } from './sections/EnergiesAndExerciesSection.tsx';
-import { getExist } from './sections/getExist.ts';
+import { EnergiesAndExercisesSection } from './sections/EnergiesAndExercisesSection.tsx';
 import { KcalSection } from './sections/KcalSection.tsx';
+import { RescuetimeSection } from './sections/RescuetimeSection.tsx';
+import { SkinSection } from './sections/SkinSection.tsx';
+import { WeightAndWaistSection } from './sections/WeightAndWaistSection.tsx';
 
 export function BodySummaryPage(): ReactNode {
   const { data } = useQuery(api('body'));
-  const { data: rescuetimeData } = useQuery(api('rescuetime'));
 
   const firstMonth = useMemo(() => data?.months.at(0)?.month, [data?.months]);
 
@@ -62,35 +51,6 @@ export function BodySummaryPage(): ReactNode {
       : 'months';
   }, [chartStartDate.value]);
 
-  const weightsAndWaist = useMemo(() => {
-    if (!data) {
-      return undefined;
-    }
-    return data[dataKey].filter(
-      (d) =>
-        typeof d.avgDayWeight === 'number' || typeof d.avgDayWaist === 'number',
-    ) as unknown as ASC<AggregatedBody>;
-  }, [dataKey, data]);
-
-  const rescuetimeHistory = useMemo(() => {
-    if (!rescuetimeData) {
-      return undefined;
-    }
-    return rescuetimeData[
-      dataKey === 'weeks' ? 'weekly' : 'monthly'
-    ] as ASC<AggregatedRescuetimeHistory>;
-  }, [dataKey, rescuetimeData]);
-
-  const rescuetimeLastRecord = useMemo(() => {
-    if (!rescuetimeHistory) {
-      return undefined;
-    }
-
-    return rescuetimeHistory
-      .at(-1)
-      ?.children.findLast((item): item is RescuetimeHistory => !!item);
-  }, [rescuetimeHistory]);
-
   return (
     <Page
       layout="scrollable"
@@ -109,62 +69,26 @@ export function BodySummaryPage(): ReactNode {
       </Suspense>
 
       <Suspense>
-        <EnergiesAndExerciesSection
+        <EnergiesAndExercisesSection
           dataKey={dataKey}
           chartStartDate={chartStartDate}
         />
       </Suspense>
 
-      {weightsAndWaist && (
-        <figure aria-label="Body weight history and waist circumference history">
-          <figcaption>
-            Weight & Waist
-            <sub aria-label="The date of the last collected data">
-              {getExist(weightsAndWaist.at(-1), 'dayWeights', 'dayWaists')
-                ?.findLast((o) => !!o)
-                ?.date.slice(0, 10)}
-            </sub>
-          </figcaption>
-          <WeightAndWaistChart
-            data={weightsAndWaist}
-            className={styles.chart}
-            start={chartStartDate.value}
-          />
-        </figure>
-      )}
+      <Suspense>
+        <WeightAndWaistSection
+          dataKey={dataKey}
+          chartStartDate={chartStartDate}
+        />
+      </Suspense>
 
-      {data?.daySkins && (
-        <figure aria-label="Skin severity and pustules history">
-          <figcaption>
-            Skin
-            <sub aria-label="The date of the last collected data">
-              {data.daySkins.at(-1)?.date}
-            </sub>
-          </figcaption>
-          <SkinChart
-            data={data.daySkins}
-            className={styles.chart}
-            start={chartStartDate.value}
-          />
-        </figure>
-      )}
+      <Suspense>
+        <SkinSection chartStartDate={chartStartDate} />
+      </Suspense>
 
-      {rescuetimeHistory && (
-        <figure aria-label="RescueTime activity history">
-          <figcaption>
-            Rescue Time
-            <sub aria-label="The date of the last collected data">
-              {rescuetimeLastRecord?.date.slice(0, 10)}
-            </sub>
-          </figcaption>
-          <RescuetimeSummaryChart
-            data={rescuetimeHistory}
-            queries={rescuetimeSummaryQuery}
-            className={styles.chart}
-            start={chartStartDate.value}
-          />
-        </figure>
-      )}
+      <Suspense>
+        <RescuetimeSection dataKey={dataKey} chartStartDate={chartStartDate} />
+      </Suspense>
     </Page>
   );
 }

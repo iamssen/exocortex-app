@@ -9,9 +9,10 @@ import { EnergyAndExerciseChart } from '@ui/charts';
 import type { DateItem } from '@ui/components';
 import { api } from '@ui/query';
 import type { ReactNode } from 'react';
+import styles from '../BodySummaryPage.module.css';
 import { getExist } from './getExist.ts';
 
-export interface EnergiesAndExerciesSectionProps {
+export interface EnergiesAndExercisesSectionProps {
   dataKey: 'weeks' | 'months';
   chartStartDate: DateItem;
 }
@@ -36,10 +37,10 @@ function selectData({ data }: VersionData<Body>, dataKey: 'weeks' | 'months') {
   };
 }
 
-export function EnergiesAndExerciesSection({
+export function EnergiesAndExercisesSection({
   dataKey,
   chartStartDate,
-}: EnergiesAndExerciesSectionProps): ReactNode {
+}: EnergiesAndExercisesSectionProps): ReactNode {
   const {
     data: { chartData, lastDate },
   } = useSuspenseQuery(
@@ -53,7 +54,7 @@ export function EnergiesAndExerciesSection({
   );
 
   return (
-    <figure aria-label="Calories burned and exercise times">
+    <figure aria-label="Calories burned and exercise duration">
       <figcaption>
         Energy & Exercise
         <sub aria-label="The date of the last collected data">{lastDate}</sub>
