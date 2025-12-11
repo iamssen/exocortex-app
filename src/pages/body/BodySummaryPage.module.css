@@ -26,10 +26,10 @@
         opacity: 0.25;
       }
     }
-  }
-}
 
-.chart {
-  width: 100%;
-  height: max(21vh, 180px);
+    [data-component='cartesian-chart'] {
+      width: 100%;
+      height: max(21vh, 180px);
+    }
+  }
 }

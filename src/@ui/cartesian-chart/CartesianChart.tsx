@@ -30,6 +30,9 @@ export function CartesianChart({
     <CartesianChartContext.Provider value={{ width, height }}>
       <div
         ref={ref}
+        role="img"
+        aria-hidden="true"
+        data-component="cartesian-chart"
         className={className}
         style={{ position: 'relative', ...style }}
         {...props}

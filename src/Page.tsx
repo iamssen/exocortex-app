@@ -29,10 +29,11 @@ export function Page({ layout, summary, ...props }: PageProps): ReactNode {
 
   return (
     <main
+      key="page"
       className={clsx(component.style, component[layout], component[screen])}
     >
-      <article {...props} />
-      <aside>
+      <article key="article" {...props} />
+      <aside key="aside">
         <Nav />
         {screen === 'desktop' && (summary ?? <FinanceSummarySection />)}
       </aside>
