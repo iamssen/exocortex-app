@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "author": "SSen",
-  "repository": "https://github.com/iamssen/exocortex-app",
+  "repository": "https://github.com/iamssen/finance",
   "scripts": {
     "type-check": "tsc --watch --noEmit",
     "dev": "vite",

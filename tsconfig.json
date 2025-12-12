@@ -37,7 +37,6 @@
 
     /* Project */
     "paths": {
-      "@ssen/*": ["./src/@ssen/*/index.ts"],
       "@ui/*": ["./src/@ui/*/index.ts"]
     }
   },

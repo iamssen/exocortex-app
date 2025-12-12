@@ -1,10 +1,10 @@
 {
-  "short_name": "Exocortex",
-  "name": "Exocortex",
+  "short_name": "Finance",
+  "name": "Finance",
   "shortcuts": [
     {
-      "name": "Open Exocortex",
-      "short_name": "Exocortex",
+      "name": "Open Dashboard",
+      "short_name": "Dashboard",
       "url": "/",
       "icons": [{ "src": "/manifest/icon-96x96.png", "sizes": "96x96" }]
     },
